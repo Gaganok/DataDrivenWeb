@@ -1,0 +1,17 @@
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Data</th>
+        <th>User</th>
+        <th>Tweet</th>
+    </tr>
+    {% for tweet in tweet_list %}
+    <tr class="clickable">
+        <td> {{ tweet.id }} </td>
+        <td> {{ tweet.data }} </td>
+        <td> {{ tweet.user }} </td>
+        <td> {{ tweet.tweet }} </td>
+    </tr>
+    {% endfor %}
+</table>
+

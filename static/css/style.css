@@ -1,0 +1,27 @@
+html {
+    box-sizing: border-box;
+}
+
+.table {
+    width: 500px;
+    background: black;
+}
+
+.table th {
+    color: wheat;
+    border-bottom: 2px solid rgb(0, 255, 221);
+}
+
+.table td {
+    color: wheat;
+    border-bottom: 1px solid rgb(0, 255, 221);
+    border-right: 1px solid rgb(0, 255, 221);
+}
+
+.table tr:last-child td {
+    border-bottom: none;
+}
+
+.table td:last-child {
+    border-right: none;
+}

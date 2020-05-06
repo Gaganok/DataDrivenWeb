@@ -1,0 +1,16 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package ie.cit.grpc;
+
+service Processing {
+    rpc process(PrRequest) returns (PrResponse);
+}
+
+message PrRequest {
+    string tweet = 1;
+}
+
+message PrResponse {
+    int64 symbol_count = 1;
+    int64 word_count = 2;
+}
