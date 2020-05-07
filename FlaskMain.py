@@ -2,8 +2,6 @@ from flask import Flask, render_template, url_for, request
 import data_processing_grpc_client
 import data_access_grpc_client
 import threading
-import requests
-import sys
 
 tweet_list = []
 tweet_list.append('Hello ddddworl!')
@@ -36,11 +34,8 @@ clientActive = False
 if __name__ == "__main__":
     if clientActive == False:
         thread = threading.Thread(target = data_access_grpc_client.start_server, args=(tweet_list, ))
-        try:
-            thread.start() 
-        except (KeyboardInterrupt, SystemExit):
-            thread._stop()
-            sys.exit()
+        thread.start() 
+      
         
         clientActive = True
     
