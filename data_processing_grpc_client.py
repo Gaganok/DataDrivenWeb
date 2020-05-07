@@ -4,7 +4,7 @@ import grpc
 import time 
 
 def process(tweet):
-    channel = grpc.insecure_channel('processing:9091')
+    channel = grpc.insecure_channel('192.168.99.100:30007')
     stub = pb2_grpc.ProcessingStub(channel)
     result_future = stub.process.future(pb2.PrRequest(tweet = tweet))
     result = result_future.result()
