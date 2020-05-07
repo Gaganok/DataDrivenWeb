@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,13 +32,13 @@
 <script>
     $(document).ready(function() {
         setInterval(function() {
-            $( ".table" ).load("http://192.168.99.100:5000//table" );
+            $( ".table" ).load("http://192.168.99.100/table" );
         }, 2000); 
     });
     
     $(document).on("click", ".clickable", function(event) {
             console.log($(this).find("td:eq(3)").text())
-            $(".processed").load("http://192.168.99.100:5000/proc", {
+            $(".processed").load("http://192.168.99.100/proc", {
                 tweet: $(this).find("td:eq(3)").text()
             },
             function(responseTxt, statusTxt, xhr){

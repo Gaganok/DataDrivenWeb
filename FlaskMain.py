@@ -5,6 +5,7 @@ import threading
 
 
 tweet_list = []
+tweet_list.append('Hello ddddworl!');
 app = Flask(__name__)
 
 @app.route('/')
