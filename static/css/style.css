@@ -2,8 +2,17 @@ html {
     box-sizing: border-box;
 }
 
-.table {
-    width: 500px;
+.table-wrapper{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.table-container{
+    margin-right: 100px;
+    min-width: 600px;
+}
+
+.table{
     background: black;
 }
 

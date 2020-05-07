@@ -2,19 +2,23 @@ from flask import Flask, render_template, url_for, request
 import data_processing_grpc_client
 import data_access_grpc_client
 import threading
-
+import requests
+import sys
 
 tweet_list = []
-tweet_list.append('Hello ddddworl!');
+tweet_list.append('Hello ddddworl!')
+
+reddit_list = []
+
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html', tweet_list = tweet_list)
+    return render_template('index.html', tweet_list = tweet_list, reddit_list = reddit_list)
 
 @app.route('/table')
 def table():
-    return render_template('table.html', tweet_list = tweet_list)
+    return render_template('table.html', tweet_list = tweet_list, reddit_list = reddit_list)
 
 @app.route('/proc', methods = ['POST'])  
 def label():
@@ -22,13 +26,22 @@ def label():
     print(tweet)
     return render_template('proc.html', result = data_processing_grpc_client.process(tweet))
 
+@app.route('/reddit', methods = ['POST'])  
+def reddit():
+    reddit_list.append(request.json)
+    return "Ok"
 
 clientActive = False
 
 if __name__ == "__main__":
     if clientActive == False:
         thread = threading.Thread(target = data_access_grpc_client.start_server, args=(tweet_list, ))
-        thread.start()
+        try:
+            thread.start() 
+        except (KeyboardInterrupt, SystemExit):
+            thread._stop()
+            sys.exit()
+        
         clientActive = True
     
     app.run(host='0.0.0.0',debug = False, threaded = False)

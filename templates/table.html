@@ -1,17 +1,43 @@
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Data</th>
-        <th>User</th>
-        <th>Tweet</th>
-    </tr>
-    {% for tweet in tweet_list %}
-    <tr class="clickable">
-        <td> {{ tweet.id }} </td>
-        <td> {{ tweet.data }} </td>
-        <td> {{ tweet.user }} </td>
-        <td> {{ tweet.tweet }} </td>
-    </tr>
-    {% endfor %}
-</table>
-
+<div class="table-wrapper">
+    <div class="table-container">
+        <table class="table">
+            <tr>
+                <th>Tweet Id</th>
+                <th>Tweet Data</th>
+                <th>Tweet User</th>
+                <th>Tweet Tweet</th>
+            </tr>
+            {% for tweet in tweet_list %}
+            <tr class="clickable">
+                <td> {{ tweet.id }} </td>
+                <td> {{ tweet.data }} </td>
+                <td> {{ tweet.user }} </td>
+                <td> {{ tweet.tweet }} </td>
+            </tr>
+            {% endfor %}
+            
+        </table>
+    </div>
+    <div class="table-container">
+        <table class="table">
+            <tr>
+                <th>Reddit ID</th>
+                <th>Reddit Score</th>
+                <th>Reddit Author</th>
+                <th>Reddit Title</th>
+                <th>Reddit Comments</th>
+                <th>Reddit Over 18</th>
+            </tr>
+            {% for reddit in reddit_list %}
+            <tr class="clickable">
+                <td> {{reddit['id']}} </td>
+                <td> {{reddit['score']}} </td>
+                <td> {{reddit['author']}} </td>
+                <td> {{reddit['title']}} </td>
+                <td> {{reddit['num_comments']}} </td>
+                <td> {{reddit['over_18']}} </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>  
+</div>

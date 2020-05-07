@@ -3,36 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/style.css')}}">
     <title>Document</title>
 </head>
 
 <body>
-    <table class="table">
-        <tr>
-            <th>Id</th>
-            <th>Data</th>
-            <th>User</th>
-            <th>Tweet</th>
-        </tr>
-        {% for tweet in tweet_list %}
-        <tr class = "clickable">
-            <td> {{ tweet.id }} </td>
-            <td> {{ tweet.data }} </td>
-            <td> {{ tweet.user }} </td>
-            <td> {{ tweet.tweet }} </td>
-        </tr>
-        {% endfor %}
-    </table>
-
+    <div class="table-wrapper"></div>
     <div class="processed"></div>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
+        //Do table load and after set interval for 2sec
+        $( ".table-wrapper" ).load("http://192.168.99.100/table");
         setInterval(function() {
-            $( ".table" ).load("http://192.168.99.100/table" );
+            $( ".table-wrapper" ).load("http://192.168.99.100/table");
         }, 2000); 
     });
     
@@ -45,8 +31,6 @@
                 alert($(".processed #symbol_count").text() + "\n" + $(".processed #word_count").text());
             });
         });
-  
-   
 </script>
 
 
