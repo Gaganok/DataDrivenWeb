@@ -3,7 +3,7 @@ import grpc
 import time 
 
 def start_server(tweet_list):
-    channel = grpc.insecure_channel('data:9090')
+    channel = grpc.insecure_channel('192.168.99.100:30007')
     stub = data_access_pb2_grpc.TweetServiceStub(channel)
     print("Start!!!!")
     while True:
