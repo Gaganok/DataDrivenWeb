@@ -22,24 +22,24 @@
     });
     
     $(document).on("click", ".clickable", function(event) {
-        const jsonData = {
-            data: $(this).find("td:eq(3)").text()
-        };
+        //const jsonData = {
+        //    data: $(this).find("td:eq(3)").text()
+        //};
 
-        const jsonString = JSON.stringify(jsonData);
-        console.log(jsonString);
+        //const jsonString = JSON.stringify(jsonData);
+        //console.log(jsonString);
         
         const xhr = new XMLHttpRequest();
 
         xhr.open("POST", "http://192.168.99.100/processing");
-        xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+        xhr.setRequestHeader('Content-Type', 'text/plain');
 
         xhr.onload  = function() {
             var jsonResponse = JSON.parse(xhr.responseText);
             alert("Word Count: " + jsonResponse.wordCount + "\n" + "Symbolls: " + jsonResponse.symbolls);
         };
 
-        xhr.send(jsonString);
+        xhr.send($(this).find("td:eq(3)").text());
     });
 </script>
 
