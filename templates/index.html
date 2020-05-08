@@ -9,7 +9,6 @@
 
 <body>
     <div class="table-wrapper"></div>
-    <div class="processed"></div>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -23,14 +22,25 @@
     });
     
     $(document).on("click", ".clickable", function(event) {
-            console.log($(this).find("td:eq(3)").text())
-            $(".processed").load("http://192.168.99.100/proc", {
-                tweet: $(this).find("td:eq(3)").text()
-            },
-            function(responseTxt, statusTxt, xhr){
-                alert($(".processed #symbol_count").text() + "\n" + $(".processed #word_count").text());
-            });
-        });
+        const jsonData = {
+            data: $(this).find("td:eq(3)").text()
+        };
+
+        const jsonString = JSON.stringify(jsonData);
+        console.log(jsonString);
+        
+        const xhr = new XMLHttpRequest();
+
+        xhr.open("POST", "http://192.168.99.100/processing");
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+
+        xhr.onload  = function() {
+            var jsonResponse = JSON.parse(xhr.responseText);
+            alert("Word Count: " + jsonResponse.wordCount + "\n" + "Symbolls: " + jsonResponse.symbolls);
+        };
+
+        xhr.send(jsonString);
+    });
 </script>
 
 

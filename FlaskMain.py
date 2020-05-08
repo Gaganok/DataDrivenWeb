@@ -18,11 +18,10 @@ def index():
 def table():
     return render_template('table.html', tweet_list = tweet_list, reddit_list = reddit_list)
 
-@app.route('/proc', methods = ['POST'])  
-def label():
-    tweet = request.values.get('tweet')
-    print(tweet)
-    return render_template('proc.html', result = data_processing_grpc_client.process(tweet))
+#@app.route('/proc', methods = ['POST'])  
+#def label():
+#    tweet = request.values.get('tweet')
+#    return render_template('proc.html', result = data_processing_grpc_client.process(tweet))
 
 @app.route('/reddit', methods = ['POST'])  
 def reddit():
@@ -35,8 +34,6 @@ if __name__ == "__main__":
     if clientActive == False:
         thread = threading.Thread(target = data_access_grpc_client.start_server, args=(tweet_list, ))
         thread.start() 
-      
-        
         clientActive = True
     
     app.run(host='0.0.0.0',debug = False, threaded = False)
